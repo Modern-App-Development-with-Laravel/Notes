@@ -1,5 +1,5 @@
 <main class="flex-1 flex flex-col h-full">
-    <form id="update-note" class="flex flex-col h-full">
+    <form id="update-note" action="{{ route('notes.update', $note) }}" method="POST" class="flex flex-col h-full">
         @csrf
         @method('PUT')
 
@@ -9,7 +9,7 @@
     </form>
 
     <div class="flex items-center justify-between px-4 py-2 border-t border-gray-200">
-        <form onsubmit="return confirm('Are you sure you want to delete this note?');">
+        <form action="{{ route('notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this note?');">
             @csrf
             @method('DELETE')
 

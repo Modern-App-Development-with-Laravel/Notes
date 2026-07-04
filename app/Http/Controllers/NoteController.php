@@ -27,6 +27,20 @@ class NoteController extends Controller
         return redirect()->route('notes.show', $note);
     }
 
+    public function update(Note $note): RedirectResponse
+    {
+        $note->update(request()->only(['title', 'content']));
+
+        return redirect()->route('notes.show', $note);
+    }
+
+    public function destroy(Note $note): RedirectResponse
+    {
+        $note->delete();
+
+        return redirect()->route('notes.show');
+    }
+
     private function notes(): Collection
     {
         return Note::latest('updated_at')->get();
